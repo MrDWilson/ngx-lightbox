@@ -108,11 +108,11 @@ export class LightboxComponent {
         $event.stopPropagation();
         const url = this.album[this.currentImageIndex].src;
         const downloadUrl = this.album[this.currentImageIndex].downloadUrl;
-        const regex = new RegExp(/\/([^\/]+\.\w+)\?/);
+        const regex = new RegExp(/([^\/]+)(?=\?)/);
         const matched = regex.exec(url);
         let fileName = "";
         if (matched != null) {
-            fileName = matched[1];
+            fileName = matched[0];
         }
         else {
             const parts = url.split('/');
