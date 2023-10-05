@@ -6,7 +6,6 @@ src/*.js
 /img
 *.metadata.json
 *.log
-/dist
 *.d.ts
 *.ngsummary.json
 
