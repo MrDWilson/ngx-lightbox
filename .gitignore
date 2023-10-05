@@ -2,11 +2,9 @@ node_modules
 src/*.map
 src/*.js
 /compiled
-*.map
 /img
 *.metadata.json
 *.log
-*.d.ts
 *.ngsummary.json
 
 .angular
