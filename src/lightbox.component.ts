@@ -198,8 +198,18 @@ export class LightboxComponent implements OnInit, AfterViewInit, OnDestroy, OnIn
     $event.stopPropagation();
     const url = this.album[this.currentImageIndex].src;
     const downloadUrl = this.album[this.currentImageIndex].downloadUrl;
-    const parts = url.split('/');
-    const fileName = parts[parts.length - 1].split("?")[0];
+
+    const regex = new RegExp(/\/([^\/]+\.\w+)\?/);
+    const matched = regex.exec(url);
+    let fileName = "";
+    if(matched != null) {
+      fileName = matched[1];
+    }
+    else {
+      const parts = url.split('/');
+      fileName = parts[parts.length - 1];
+    }
+
     const canvas = document.createElement('canvas');
     const ctx = canvas.getContext('2d');
     const preloader = new Image();
