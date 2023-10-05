@@ -199,7 +199,7 @@ export class LightboxComponent implements OnInit, AfterViewInit, OnDestroy, OnIn
     const url = this.album[this.currentImageIndex].src;
     const downloadUrl = this.album[this.currentImageIndex].downloadUrl;
 
-    const regex = new RegExp(/([^\/]+)(?=\?)/);
+    const regex = /([^\/]+)(?=\?)/;
     const matched = regex.exec(url);
     let fileName = "";
     if(matched != null) {
@@ -228,10 +228,18 @@ export class LightboxComponent implements OnInit, AfterViewInit, OnDestroy, OnIn
       }, 'image/jpeg', 0.75);
     };
     preloader.crossOrigin = '';
-    if(downloadUrl && downloadUrl.length > 0)
-      preloader.src = this._sanitizer.sanitize(SecurityContext.URL, downloadUrl);
-    else
-      preloader.src = this._sanitizer.sanitize(SecurityContext.URL, url);
+    
+    let sanitized;
+    if(downloadUrl && downloadUrl.length > 0) {
+      sanitized = this._sanitizer.sanitize(SecurityContext.URL, downloadUrl);
+    }
+    else {
+      sanitized = this._sanitizer.sanitize(SecurityContext.URL, url);
+    }
+
+    if(sanitized) {
+      preloader.src = sanitized;
+    }
   }
 
   public control($event: any): void {
