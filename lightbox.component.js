@@ -112,7 +112,7 @@ export class LightboxComponent {
         const matched = regex.exec(url);
         let fileName = "";
         if (matched != null) {
-            fileName = matched[0];
+            fileName = matched[1];
         }
         else {
             const parts = url.split('/');

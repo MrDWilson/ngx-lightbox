@@ -203,7 +203,7 @@ export class LightboxComponent implements OnInit, AfterViewInit, OnDestroy, OnIn
     const matched = regex.exec(url);
     let fileName = "";
     if(matched != null) {
-      fileName = matched[0];
+      fileName = matched[1];
     }
     else {
       const parts = url.split('/');
